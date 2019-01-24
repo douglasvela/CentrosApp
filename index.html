@@ -1,0 +1,287 @@
+<html>
+<head>
+    <title></title>
+    <!--<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+      <script type="text/javascript" src="assets/plugins/bootstrap/js/popper.min.js"></script>
+  <script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="assets/plugins/jquery/jquery.plugin.js"></script>
+    <script  src="http://code.jquery.com/jquery-latest.js"></script> -->
+    <link href="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="assets/plugins/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="assets/plugins/ion-rangeslider/css/ion.rangeSlider.skinModern.css" rel="stylesheet">
+    
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+    <link href="assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <link href="assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/colors/blue.css" id="theme" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+    <script>
+      function buscar() { 
+        var formData = new FormData();
+        $.ajax({
+              //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
+              url: "http://centros.proyectotesisuesfmp.com/indicadores_inicio.php",
+              type: "post",
+              dataType: "html",
+              data: formData,
+              crossDomain: true,
+              cache: false,
+              contentType: false,
+              processData: false
+          })
+          .done(function(res1){
+            $("#ind_inicio").html(res1);
+          }); 
+      } 
+      function mostrarforminfor() { 
+        var formData = new FormData();
+        var nr = localStorage.getItem('nr');
+        formData.append("nr", nr);
+        $.ajax({
+              //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
+              url: "http://centros.proyectotesisuesfmp.com/vista/info_personal/info_personal.php",
+              type: "post",
+              dataType: "html",
+              data: formData,
+              crossDomain: true,
+              cache: false,
+              contentType: false,
+              processData: false
+          })
+          .done(function(res1){
+            $("#ind_inicio").html(res1);
+            $(".select2").select2();
+          }); 
+      } 
+      function mostrarformbeneficios() { 
+        var formData = new FormData();
+        var usuario = localStorage.getItem('nr');
+        formData.append("nr", usuario);
+        $.ajax({
+              //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
+              url: "http://centros.proyectotesisuesfmp.com/vista/beneficios/beneficios.php",
+              type: "post",
+              dataType: "html",
+              data: formData,
+              crossDomain: true,
+              cache: false,
+              contentType: false,
+              processData: false
+          })
+          .done(function(res1){
+            $("#ind_inicio").html(res1);
+            $(".select2").select2();
+          }); 
+      } 
+      function mostrarBitacora() { 
+        var formData = new FormData();  
+        $.ajax({
+              //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
+              url: "http://centros.proyectotesisuesfmp.com/vista/bitacora_personal/bitacora_personal_viaticos.php",
+              type: "post",
+              dataType: "html",
+              data: formData,
+              crossDomain: true,
+              cache: false,
+              contentType: false,
+              processData: false
+          })
+          .done(function(res1){
+            $("#ind_inicio").html(res1);
+          }); 
+      } 
+      function inicio_sesion(){
+        var formData = new FormData();
+        formData.append("usuario", $("#usuario").val());
+        formData.append("contrasenia", $("#contrasenia").val());
+        $.ajax({
+              //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
+              url: "http://centros.proyectotesisuesfmp.com/controlador/inicio_sesion.php",
+              type: "post",
+              dataType: "html",
+              data: formData,
+              crossDomain: true,
+              cache: false,
+              contentType: false,
+              processData: false
+          })
+          .done(function(res1){
+           var arregloDeSubCadenas = res1.split(',');
+            if(arregloDeSubCadenas[0]=="correcto"){
+              $("#form_menu").show();
+              $("#form_inicio_sesion").hide();
+              localStorage.setItem("usuario", $("#usuario").val());
+              localStorage.setItem("nr",arregloDeSubCadenas[1] );
+              localStorage.setItem("nombre_completo",arregloDeSubCadenas[2] );
+              $("#nombre").html(arregloDeSubCadenas[2]);
+            }else{
+              $("#form_menu").hide();
+              $("#form_inicio_sesion").show();
+            }
+          });
+      }
+      function cargar_indicadores(id_centro){
+        var formData = new FormData();
+        formData.append("usuario", localStorage.getItem('usuario'));
+        formData.append("nr", localStorage.getItem('nr'));
+        formData.append("id_centro", id_centro);        
+        $.ajax({
+              //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
+              url: "http://centros.proyectotesisuesfmp.com/controlador/indicadores.php",
+              type: "post",
+              dataType: "html",
+              data: formData,
+              crossDomain: true,
+              cache: false,
+              contentType: false,
+              processData: false
+          })
+          .done(function(res1){
+            $("#ind_inicio").html(res1);
+            $(".select2").select2();
+          });
+      }
+      function CerrarSession(){
+        localStorage.setItem("usuario", '');
+        localStorage.setItem("nr", '');
+        $("#form_menu").hide();
+        $("#form_inicio_sesion").show();
+        $("#usuario").val("");
+        $("#contrasenia").val("");
+        $("#ind_inicio").html("");
+      }
+    </script>
+</head>
+
+
+<body class="fix-header fix-sidebar card-no-border" onload="cargar_indicadores('1')">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div   style="display:none" id="form_menu"> 
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light"> 
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        
+                    </ul>                   
+                </div>
+            </nav>
+        </header> 
+        <aside class="left-sidebar"> 
+            <div class="scroll-sidebar">  
+                <nav class="sidebar-nav" >
+                    <ul>
+                        <li class="nav-small-cap">CentrosApp - <span id="nombre"></span></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarforminfor()"><i  class="ti-info-alt"></i><span  class="hide-menu">Información Personal</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarformbeneficios()"><i  class="ti-plus"></i><span  class="hide-menu">Beneficios</span></div></a></li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+            <!-- Bottom points-->
+            <div class="sidebar-footer">
+                <a href="#" class=""  ><i onclick="CerrarSession()" class="ti-power-off"></i></a>
+                  <a href="#" class="nav-toggler"  ><i onclick="cargar_indicadores()" class="ti-home"></i></a> </div>
+            <!-- End Bottom points-->
+        </aside>
+         
+        <div class="page-wrapper">
+            <div  id="ind_inicio" ></div><br><br>
+            <footer class="footer"> © 2019 UES-FMP </footer>
+        </div>
+    </div>
+     <div  style="display:block" id="form_inicio_sesion"> 
+      <div class="page-wrapper">
+        <div class="container-fluid">
+             <div class="row " id="cnt_form">
+               <div class="col-lg-4"  style="display: block;">
+                    <div class="card">
+                        <div class="card-body b-t">
+                        <center><h4 class="card-title m-b-0">Inicio de Sesión</h4></center><br>
+                          <div class="form-group">
+                            
+                            <input type="text" id="usuario" class="form-control " placeholder="Nombre de usuario">
+                          </div>
+                          <div class="form-group">
+                            
+                            <input type="password" id="contrasenia" class="form-control" placeholder="Contraseña">
+                          </div>
+                          <button type="button" onclick="inicio_sesion();" class="btn waves-effect waves-light btn-primary"><i class="ti-power-off"></i> Ingresar</button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            <footer class="footer"> © 2019 UES-FMP </footer>
+        </div>
+      </div>
+     </div>
+
+</body>
+
+
+<!-- <script  src="http://code.jquery.com/jquery-latest.js"></script> -->
+    <script src="assets/plugins/jquery/jquery.min.js"></script> 
+<script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="assets/js/dataTables.buttons.min.js"></script>
+    <script src="assets/js/buttons.flash.min.js"></script>
+    <script src="assets/js/jszip.min.js"></script>
+    <script src="assets/js/pdfmake.min.js"></script>
+    <script src="assets/js/vfs_fonts.js"></script>
+    <script src="assets/js/buttons.html5.min.js"></script>
+    <script src="assets/js/buttons.print.min.js"></script>
+    <script src="assets/plugins/ion-rangeslider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+    <script src="assets/plugins/ion-rangeslider/js/ion-rangeSlider/ion.rangeSlider-init.js"></script>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <script src="assets/js/viaticos_validation.js"></script>
+    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/sidebarmenu.js"></script>
+    <script src="assets/js/waves.js"></script>
+    <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="assets/js/custom.min.js"></script>
+    <script src="assets/js/validation.js"></script>
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <script src="assets/plugins/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
+    <script> jQuery(document).ready(function() { $(".select2").select2(); $('.selectpicker').selectpicker(); }); </script>
+    <script src="assets/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/moment-with-locales.min.js"></script>
+    
+    <script src="assets/plugins/toast-master/js/jquery.toast.js"></script>
+
+     <!--<script src="assets/plugins/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    
+    <script src="assets/plugins/d3/d3.min.js"></script>
+    <script src="assets/plugins/c3-master/c3.min.js"></script>
+    
+    <script src="assets/js/dashboard1.js"></script>
+    
+    
+    
+    <script src="assets/plugins/styleswitcher/jQuery.style.switcher.js"></script> -->
+</html>
