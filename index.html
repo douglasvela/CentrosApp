@@ -146,6 +146,7 @@
               processData: false
           })
           .done(function(res1){
+            $("#selec_centros").show();
             $("#ind_inicio").html(res1);
             $(".select2").select2();
           });
@@ -224,7 +225,7 @@
             <!-- Bottom points-->
             <div class="sidebar-footer">
                 <a href="#" class=""  ><i onclick="CerrarSession()" class="ti-power-off"></i></a>
-                  <a href="#" class="nav-toggler"  ><i onclick="cargar_indicadores()" class="ti-home"></i></a> </div>
+                  <a href="#" class="nav-toggler"  ><i onclick="cargar_indicadores('1')" class="ti-home"></i></a> </div>
             <!-- End Bottom points-->
         </aside>
          
