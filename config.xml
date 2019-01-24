@@ -4,9 +4,9 @@
     id          = "com.phone.exa3"
     versionCode = "10"
     version     = "1.0.0" >
-    <name>PersonaApp</name>
+    <name>CentrosApp</name>
     <description>
-       App para consultar datos personales
+       App para consultar datos de la reservas
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Douglas Recinos
