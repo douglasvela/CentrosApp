@@ -154,7 +154,7 @@
         var formData = new FormData();    
         $.ajax({
               //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
-              url: "http://centros.proyectotesisuesfmp.com/select_centros.php",
+              url: "http://centros.proyectotesisuesfmp.com/vista/select_centros.php",
               type: "post",
               dataType: "html",
               data: formData,
@@ -213,8 +213,9 @@
                 <nav class="sidebar-nav" >
                     <ul>
                         <li class="nav-small-cap">CentrosApp - <span id="nombre"></span></li>
-                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarforminfor()"><i  class="ti-info-alt"></i><span  class="hide-menu">Información Personal</span></div></a></li>
-                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarformbeneficios()"><i  class="ti-plus"></i><span  class="hide-menu">Beneficios</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick=""><i  class="ti-info-alt"></i><span  class="hide-menu">Visitantes por periodo</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick=""><i  class="ti-plus"></i><span  class="hide-menu">Espacios Fisicos por Centro</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick=""><i  class="ti-plus"></i><span  class="hide-menu">Ingresos por Centro</span></div></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -227,8 +228,10 @@
             <!-- End Bottom points-->
         </aside>
          
-        <div class="page-wrapper">
+        <div class="page-wrapper"><br><br>
+          <div class="row"><div class="col-lg-12 col-md-4">
             <div id="selec_centros"></div>
+          </div></div>
             <div  id="ind_inicio" ></div>
             <br><br>
             <footer class="footer"> © 2019 UES-FMP </footer>
