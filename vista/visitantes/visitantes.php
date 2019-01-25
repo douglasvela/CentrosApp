@@ -75,7 +75,9 @@
 		            $("#informe_vista").html(res1);
 		          }); 
 	        }else{
-	        	swal({ title: "¡Ups! Error", text: "Completa los campos.", type: "error", showConfirmButton: true });
+	        	//swal({ title: "¡Ups! Error", text: "Completa los campos.", type: "error", showConfirmButton: true });
+	        	$.toast({ heading: 'Fechas Incorrectas', text: 'Debe ingresar intervalo de fechas correctas', position: 'top-right', loaderBg:'#fc4b6c', icon: 'error', hideAfter: time_notificaciones, stack: 6,loaderBg:'#F67171'
+                    });
 	        }
 
 	     }
