@@ -1,19 +1,21 @@
 <?php
 $funcion = $_POST['funcion'];
-$id_empleado = $_POST['id_empleado']; 
+$id_empleado = $_POST['id_empleado'];
+$fecha_min = $_POST['fecha_min'];
+$fecha_max = $_POST['fecha_max'];
 switch($funcion) {
-        case 'reporte_bitacora': 
-            echo reporte_viatico_bitacora_empleado($id_empleado,$fecha_min,$fecha_max);
+        case 'reporte_viatico_pendiente_empleado': 
+            echo reporte_viatico_pagado_empleado($id_empleado,$fecha_min,$fecha_max);
             break;
     }
 	
 
-function reporte_viatico_bitacora_empleado($id_empleado,$fecha_min,$fecha_max){
+function reporte_viatico_pagado_empleado($id_empleado,$fecha_min,$fecha_max){
 
       $conexion = mysqli_connect("162.241.252.245","proyedk4_WPZF0","MAYO_nesa94","proyedk4_WPZF0"); 
       
      $cabecera_vista = '<table style="font-size: 14;" class="table"><tr> 
-		<td width="950px"><h6><center>MINISTERIO DE TRABAJO Y PREVISION SOCIAL <br> UNIDAD FINANCIERA INSTITUCIONAL <br> FONDO CIRCULANTE DE MONTO FIJO <br> BITÁCORA DE VIATICOS POR EMPLEADO</center><h6></td>
+		<td width="950px"><h6><center>MINISTERIO DE TRABAJO Y PREVISION SOCIAL <br> UNIDAD FINANCIERA INSTITUCIONAL <br> FONDO CIRCULANTE DE MONTO FIJO <br> REPORTE VIATICOS PAGADOS POR EMPLEADO</center><h6></td>
 	 	</tr></table>';
 	 	$fecha=strftime( "%d-%m-%Y - %H:%M:%S", time() );
 	 	//$pie = 'Usuario: '.$this->session->userdata('usuario_viatico').'    Fecha y Hora Creacion: '.$fecha.'||{PAGENO} de {nbpg} páginas';
@@ -28,7 +30,7 @@ function reporte_viatico_bitacora_empleado($id_empleado,$fecha_min,$fecha_max){
 		
 		//$ids = array('nr' => '2588');
 		//$viatico = $this->Reportes_viaticos_model->obtenerListaviatico_pendiente($ids);
-		$query_consulta_viatico=mysqli_query($conexion,"SELECT * FROM vyp_mision_oficial WHERE nr_empleado='".$id_empleado."' and (estado  between '0' and '8')");
+		$query_consulta_viatico=mysqli_query($conexion,"SELECT * FROM `vyp_mision_oficial` WHERE `nr_empleado`='".$id_empleado."' and estado = '8' and fecha_solicitud>='".date("Y-m-d",strtotime($fecha_min))."' and fecha_solicitud <= '".date("Y-m-d",strtotime($fecha_max))."'");
 		while( $fila=mysqli_fetch_array($query_consulta_viatico)){
             $viatico[] = $fila;
          }
@@ -44,7 +46,6 @@ function reporte_viatico_bitacora_empleado($id_empleado,$fecha_min,$fecha_max){
 					<tr>
 						<th scope="col" align="center">Fecha Solicitud</th>
 						<th scope="col" align="center">Actividad</th>
-						<th scope="col" align="center">Estado</th>
 						<th scope="col" align="center">Viaticos</th>
 						<th scope="col" align="center">Pasajes</th>
 						<th scope="col" align="center">Alojamiento</th>
@@ -78,18 +79,10 @@ function reporte_viatico_bitacora_empleado($id_empleado,$fecha_min,$fecha_max){
 						$suma_pasajes+=$totales_detalle[1];
 						$suma_alojamientos+=$totales_detalle[2];
 						$suma_total=$suma_viaticos+$suma_pasajes+$suma_alojamientos;
-
-						$query_estado=mysqli_query($conexion,"select * from vyp_estado_solicitud where id_estado_solicitud='".$viaticos[13]."'");
-						while( $filaestado=mysqli_fetch_array($query_estado)){
-				            $nombre_estado[] = $filaestado;
-				         }
-				         foreach ($nombre_estado as $nombre_estado_fila) {}
-
 					$cuerpo .= '
 						<tr>
 							<td>'.date('d-m-Y',strtotime($viaticos[5])).'</td>
 							<td>'.$viaticos[7].'</td>
-							<td>'.$nombre_estado_fila[1].'</td>
 							<td>$'.number_format($totales_detalle[0],2,".",",").'</td>
 							<td>$'.number_format($totales_detalle[1],2,".",",").'</td>
 							<td>$'.number_format($totales_detalle[2],2,".",",").'</td>
@@ -105,7 +98,7 @@ function reporte_viatico_bitacora_empleado($id_empleado,$fecha_min,$fecha_max){
 				}
 				$cuerpo .= '
 					<tr>
-							<th colspan="3" align="right">Total</th>
+							<th colspan="2" align="right">Total</th>
 							<th>$'.number_format($suma_viaticos,2,".",",").'</th>
 							<th>$'.number_format($suma_pasajes,2,".",",").'</th>
 							<th>$'.number_format($suma_alojamientos,2,".",",").'</th>

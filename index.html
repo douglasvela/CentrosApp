@@ -56,7 +56,7 @@
           .done(function(res1){
             $("#ind_inicio").html(res1);
             $(".select2").select2();
-            $("#selec_centros").hide();
+            $("#div_selec_centros").hide();
           }); 
       } 
       function mostrarformbeneficios() { 
@@ -77,14 +77,14 @@
           .done(function(res1){
             $("#ind_inicio").html(res1);
             $(".select2").select2();
-            $("#selec_centros").hide();
+            $("#div_selec_centros").hide();
           }); 
       } 
-      function mostrarBitacora() { 
+      function mostrarvisitantes() { 
         var formData = new FormData();  
         $.ajax({
               //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
-              url: "http://centros.proyectotesisuesfmp.com/vista/bitacora_personal/bitacora_personal_viaticos.php",
+              url: "http://centros.proyectotesisuesfmp.com/vista/visitantes/visitantes.php",
               type: "post",
               dataType: "html",
               data: formData,
@@ -95,7 +95,8 @@
           })
           .done(function(res1){
             $("#ind_inicio").html(res1);
-            $("#selec_centros").hide();
+            $("#div_selec_centros").hide();
+            $(".select2").select2();
           }); 
       } 
       function inicio_sesion(){
@@ -122,7 +123,8 @@
               localStorage.setItem("nr",arregloDeSubCadenas[1] );
               localStorage.setItem("nombre_completo",arregloDeSubCadenas[2] );
               $("#nombre").html(arregloDeSubCadenas[2]);
-              $("#selec_centros").show();
+              $("#div_selec_centros").show();
+              cargar_indicadores('1');cargar_centros();
             }else{
               $("#form_menu").hide();
               $("#form_inicio_sesion").show();
@@ -146,7 +148,7 @@
               processData: false
           })
           .done(function(res1){
-            $("#selec_centros").show();
+            $("#div_selec_centros").show();
             $("#ind_inicio").html(res1);
             $(".select2").select2();
           });
@@ -177,12 +179,12 @@
         $("#usuario").val("");
         $("#contrasenia").val("");
         $("#ind_inicio").html("");
-      }
+      } 
     </script>
 </head>
 
 
-<body class="fix-header fix-sidebar card-no-border" onload="cargar_centros();cargar_indicadores('1')">
+<body class="fix-header fix-sidebar card-no-border">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -214,7 +216,7 @@
                 <nav class="sidebar-nav" >
                     <ul>
                         <li class="nav-small-cap">CentrosApp - <span id="nombre"></span></li>
-                         <li><a href="#" class="nav-toggler"  ><div onclick=""><i  class="ti-info-alt"></i><span  class="hide-menu">Visitantes por periodo</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarvisitantes()"><i  class="ti-check-box"></i><span  class="hide-menu">Visitantes por periodo</span></div></a></li>
                          <li><a href="#" class="nav-toggler"  ><div onclick=""><i  class="ti-plus"></i><span  class="hide-menu">Espacios Fisicos por Centro</span></div></a></li>
                          <li><a href="#" class="nav-toggler"  ><div onclick=""><i  class="ti-plus"></i><span  class="hide-menu">Ingresos por Centro</span></div></a></li>
                     </ul>
@@ -229,10 +231,15 @@
             <!-- End Bottom points-->
         </aside>
          
-        <div class="page-wrapper"><br><br>
-          <div class="row"><div class="col-lg-12 col-md-4">
-            <div id="selec_centros"></div>
-          </div></div>
+        <div class="page-wrapper">
+          <div class="container-fluid" id="div_selec_centros">
+            <br><br>
+            <div class="row">
+              <div class="col-lg-12 col-md-4">
+                <div id="selec_centros"></div>
+              </div>
+            </div>
+          </div>
             <div  id="ind_inicio" ></div>
             <br><br>
             <footer class="footer"> © 2019 UES-FMP </footer>
