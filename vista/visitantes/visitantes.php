@@ -82,19 +82,22 @@
 	        }
 
 	     }
+	     var options = {
+		    date: new Date(),
+		    mode: 'date'
+		};
+		 
+		function onSuccess(date) {
+		    alert('Selected date: ' + date);
+		}
+		 
+		function onError(error) { // Android only
+		    alert('Error: ' + error);
+		}
 	     function calendar(){ 
 
 		    alert("test") // is working 
-
-		    var options = { 
-		    date: new Date(), 
-		    mode: 'date' 
-		    }; 
-
-		    datePicker.show(options, function(date){ 
-		    alert("date result " + date);  // not working 
-		    }); 
-
+		    datePicker.show(options, onSuccess, onError);
 		} 
 	</script>
 </head>
