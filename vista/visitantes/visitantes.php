@@ -3,6 +3,7 @@
 <head>
 	<link href="../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
 	<script src="../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	 <script src="../../assets/plugins/jquery/jquery.min.js"></script> 
 	 <script>
 	  $(document).ready(function(){
 	          $('.date-own').datepicker({
@@ -77,27 +78,19 @@
 		          }); 
 	        }else{
 	        	//swal({ title: "¡Ups! Error", text: "Completa los campos.", type: "error", showConfirmButton: true });
-	        	$.toast({ heading: 'Fechas Incorrectas', text: 'Debe ingresar intervalo de fechas correctas', position: 'top-right', loaderBg:'#fc4b6c', icon: 'error', hideAfter: time_notificaciones, stack: 6,loaderBg:'#F67171'
-                    });
 	        }
 
 	     }
-	     var options = {
-		    date: new Date(),
-		    mode: 'date'
-		};
-		 
-		function onSuccess(date) {
-		    alert('Selected date: ' + date);
-		}
-		 
-		function onError(error) { // Android only
-		    alert('Error: ' + error);
-		}
+	    
 	     function calendar(){ 
+ 			var options = {
+			  date: new Date(),
+			  mode: 'date'
+			};
 
-		    alert("test") // is working 
-		    datePicker.show(options, onSuccess, onError);
+			datePicker.show(options, function(date){
+			  alert("date result " + date);  
+			});
 		} 
 	</script>
 </head>
