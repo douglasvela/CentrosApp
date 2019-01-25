@@ -12,24 +12,7 @@
 	            todayHighlight: true
 	          });
 	      });
-	  $('.nativedatepicker').focus(function(event) {
-            var currentField = $(this);
-            var myNewDate = new Date(Date.parse(currentField.val())) || new Date();
 
-            // Same handling for iPhone and Android
-            window.plugins.datePicker.show({
-                date : myNewDate,
-                mode : 'date', // date or time or blank for both
-                allowOldDates : true
-            }, function(returnDate) {
-                var newDate = new Date(returnDate);
-                var newString = newDate.toString();
-                newString = newString.substring(0,15);
-                currentField.val(newString);
-                // This fixes the problem you mention at the bottom of this script with it not working a second/third time around, because it is in focus.
-                currentField.blur();
-            });
-        });
 	</script>
 	<script type="text/javascript">
 		function mostrar_ocultar_selects(){
@@ -99,6 +82,20 @@
 	        }
 
 	     }
+	     function calendar(){ 
+
+		    alert("test") // is working 
+
+		    var options = { 
+		    date: new Date(), 
+		    mode: 'date' 
+		    }; 
+
+		    datePicker.show(options, function(date){ 
+		    alert("date result " + date);  // not working 
+		    }); 
+
+		} 
 	</script>
 </head>
 <body>
@@ -117,7 +114,7 @@
 	                    <div class="card-body b-t">
 	                    	<div class="form-group">
 	                            <h5>Año: <span class="text-danger">*</span></h5>
-	                            <input type="text" value="<?php echo date('Y'); ?>" class="nativedatepicker form-control" id="anio_actual" name="anio_actual" placeholder="yyyy">
+	                            <input type="text" value="<?php echo date('Y'); ?>" class="form-control" id="anio_actual" name="anio_actual" placeholder="yyyy" onclick="calendar()">
 	                        </div>
 	                        <div class="demo-radio-button">
 	                        	<h5>Periodo: <span class="text-danger"></span></h5>
