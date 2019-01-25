@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 
+	<link href="../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+	<script src="../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	 <script>
+	  $(document).ready(function(){
+	          $('.date-own').datepicker({
+	            minViewMode: 2,
+	            format: 'yyyy',
+	            autoclose: true,
+	            todayHighlight: true
+	          });
+	      });
+	</script>
 	<script type="text/javascript">
 		function mostrar_ocultar_selects(){
 	     	if(document.getElementById('radio_mensual').checked==true){
@@ -86,7 +97,7 @@
 	                    <div class="card-body b-t">
 	                    	<div class="form-group">
 	                            <h5>Año: <span class="text-danger">*</span></h5>
-	                            <input type="year" value="<?php echo date('Y'); ?>" class="form-control" id="anio_actual" name="anio_actual">
+	                            <input type="text" value="<?php echo date('Y'); ?>" class="date-own form-control" id="anio_actual" name="anio_actual" placeholder="yyyy">
 	                        </div>
 	                        <div class="demo-radio-button">
 	                        	<h5>Periodo: <span class="text-danger"></span></h5>
