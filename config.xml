@@ -19,7 +19,7 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
-    <plugin name="cordova-plugin-datepicker" spec="cli-8.1.1" source="pgb" />
+    <gap:plugin name="cordova-plugin-datepicker" source="npm" />
     <allow-navigation href="*" />
     <allow-intent href="*" />
     <preference name="phonegap-version" value="cli-8.1.1" />
