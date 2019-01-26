@@ -72,6 +72,6 @@
 	    </div>
 </body>
  <script> jQuery(document).ready(function() { 
-        $(".container-fluid").css("padding",'3');
+        $(".container-fluid").css("padding",'10');
      }); </script>
 </html>
