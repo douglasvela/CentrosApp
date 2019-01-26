@@ -4,10 +4,10 @@ $tipo = $_POST['type'];
 $value = $_POST['value'];
 $data  = array('tipo' => $tipo, 'value'=>$value,'anio'=>$anio);
 
-echo reporte_viatico_pagado_empleado($data);
+echo reporte($data);
  
 
-function reporte_viatico_pagado_empleado($data){
+function reporte($data){
 
       $conexion = mysqli_connect("162.241.252.245","proyedk4_WPZF0","MAYO_nesa94","proyedk4_WPZF0"); 
       $mes = array('ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE');
@@ -401,7 +401,6 @@ function reporte_viatico_pagado_empleado($data){
         return $centros_data;
     }
 	function obtener_centros($conexion){
-       // $centros = $this->db->query("SELECT * FROM `cdr_centro` ORDER BY nombre ASC");
         $query=mysqli_query($conexion,"SELECT * FROM `cdr_centro` ORDER BY nombre ASC");
 	     	 while( $query_fila=mysqli_fetch_array($query,MYSQLI_ASSOC)){
 	            $centros[] = $query_fila;
@@ -414,13 +413,13 @@ function reporte_viatico_pagado_empleado($data){
 	     	 while( $query_fila=mysqli_fetch_array($query,MYSQLI_ASSOC)){
 	            $centros[] = $query_fila;
 	         }
-    		//$centros = $this->db->query("SELECT * FROM `cdr_categoria` WHERE id_tipo_categoria = '2' AND id_categoria IN (SELECT t.id_categoria_cdr_tarifas FROM cdr_tarifas AS t WHERE t.precio_cdr_tarifas > 0)");
+    		
     	}elseif ($tipo == "gratis") {
     		$query=mysqli_query($conexion,"SELECT * FROM `cdr_categoria` WHERE id_tipo_categoria = '2' AND id_categoria NOT IN (SELECT t.id_categoria_cdr_tarifas FROM cdr_tarifas AS t WHERE t.precio_cdr_tarifas > 0)");
 	     	 while( $query_fila=mysqli_fetch_array($query,MYSQLI_ASSOC)){
 	            $centros[] = $query_fila;
 	         }
-    		//$centros = $this->db->query("SELECT * FROM `cdr_categoria` WHERE id_tipo_categoria = '2' AND id_categoria NOT IN (SELECT t.id_categoria_cdr_tarifas FROM cdr_tarifas AS t WHERE t.precio_cdr_tarifas > 0)");
+    		
     	}
         return $centros;
     }
@@ -446,7 +445,7 @@ function obtener_cantidad_visitante($data, $tipo, $id_categ_visi,$conexion){
 	     	 while( $query_centro_fila=mysqli_fetch_array($query_centro,MYSQLI_ASSOC)){
 	            $centros[] = $query_centro_fila;
 	         }
-	 		//$centros = $this->db->query("SELECT SUM($cnt_mas) AS cant_masculino, SUM($cnt_fem) AS cant_femenino FROM `cdr_detalle_reserva` AS dr JOIN `cdr_reserva` AS r ON dr.id_reserva = r.id_reserva ".$data['id_centro']." AND YEAR(r.fecha_inicio) = '".$data["anio"]."' AND MONTH(r.fecha_inicio) = '".$data["value"]."' ".$id_categ_visi);
+	 		
 	 	}else if($data["tipo"] == "trimestral"){
  			$tmfin = (intval($data["value"])*3);
  			$tminicio = $tmfin-2;
@@ -454,7 +453,7 @@ function obtener_cantidad_visitante($data, $tipo, $id_categ_visi,$conexion){
 	      	while( $query_centro_fila=mysqli_fetch_array($query_centro,MYSQLI_ASSOC)){
 	            $centros[] = $query_centro_fila;
 	         }
-	 		//$centros = $this->db->query("SELECT SUM($cnt_mas) AS cant_masculino, SUM($cnt_fem) AS cant_femenino FROM `cdr_detalle_reserva` AS dr JOIN `cdr_reserva` AS r ON dr.id_reserva = r.id_reserva ".$data['id_centro']." AND YEAR(r.fecha_inicio) = '".$data["anio"]."' AND MONTH(r.fecha_inicio) BETWEEN '".$tminicio."' AND '".$tmfin."' ".$id_categ_visi);
+	 	 
 
 	 	}else if($data["tipo"] == "semestral"){
  			$smfin = (intval($data["value"])*6);
@@ -463,13 +462,12 @@ function obtener_cantidad_visitante($data, $tipo, $id_categ_visi,$conexion){
 	      	while( $query_centro_fila=mysqli_fetch_array($query_centro,MYSQLI_ASSOC)){
 	            $centros[] = $query_centro_fila;
 	         }
-	 		//$centros = $this->db->query("SELECT SUM($cnt_mas) AS cant_masculino, SUM($cnt_fem) AS cant_femenino FROM `cdr_detalle_reserva` AS dr JOIN `cdr_reserva` AS r ON dr.id_reserva = r.id_reserva ".$data['id_centro']." AND YEAR(r.fecha_inicio) = '".$data["anio"]."' AND MONTH(r.fecha_inicio) BETWEEN '".$sminicio."' AND '".$smfin."' ".$id_categ_visi);
+	 		 
 	 	}else{
 	 		$query_centro=mysqli_query($conexion,"SELECT SUM(".$cnt_mas.") AS cant_masculino, SUM(".$cnt_fem.") AS cant_femenino FROM `cdr_detalle_reserva` AS dr JOIN `cdr_reserva` AS r ON dr.id_reserva = r.id_reserva ".$data['id_centro']." AND YEAR(r.fecha_inicio) = '".$data["anio"]."' ".$id_categ_visi);
 	      	while( $query_centro_fila=mysqli_fetch_array($query_centro,MYSQLI_ASSOC)){
 	            $centros[] = $query_centro_fila;
 	         }
-	 		//$centros = $this->db->query("SELECT SUM($cnt_mas) AS cant_masculino, SUM($cnt_fem) AS cant_femenino FROM `cdr_detalle_reserva` AS dr JOIN `cdr_reserva` AS r ON dr.id_reserva = r.id_reserva ".$data['id_centro']." AND YEAR(r.fecha_inicio) = '".$data["anio"]."' ".$id_categ_visi);
 	 	}
        
         return $centros;

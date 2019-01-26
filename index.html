@@ -59,13 +59,11 @@
             $("#div_selec_centros").hide();
           }); 
       } 
-      function mostrarformbeneficios() { 
+      function mostrarformingresosxespacios() { 
         var formData = new FormData();
-        var usuario = localStorage.getItem('nr');
-        formData.append("nr", usuario);
         $.ajax({
               //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
-              url: "http://centros.proyectotesisuesfmp.com/vista/beneficios/beneficios.php",
+              url: "http://centros.proyectotesisuesfmp.com/vista/ingresos_espacios/ingresos_espacios.php",
               type: "post",
               dataType: "html",
               data: formData,
@@ -129,6 +127,7 @@
             }else{
               $("#form_menu").hide();
               $("#form_inicio_sesion").show();
+              $("#div_selec_centros").hide();
             }
           });
       }
@@ -180,6 +179,7 @@
         $("#usuario").val("");
         $("#contrasenia").val("");
         $("#ind_inicio").html("");
+        $("#div_selec_centros").hide();
       } 
     </script>
 </head>
@@ -218,7 +218,7 @@
                     <ul>
                         <li class="nav-small-cap">CentrosApp - <span id="nombre"></span></li>
                          <li><a href="#" class="nav-toggler"  ><div onclick="mostrarvisitantes()"><i  class="ti-check-box"></i><span  class="hide-menu">Visitantes por periodo</span></div></a></li>
-                         <li><a href="#" class="nav-toggler"  ><div onclick=""><i  class="ti-plus"></i><span  class="hide-menu">Espacios Fisicos por Centro</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarformingresosxespacios()"><i  class="ti-plus"></i><span  class="hide-menu">Ingresos por Espacios Fisicos</span></div></a></li>
                          <li><a href="#" class="nav-toggler"  ><div onclick=""><i  class="ti-plus"></i><span  class="hide-menu">Ingresos por Centro</span></div></a></li>
                     </ul>
                 </nav>
