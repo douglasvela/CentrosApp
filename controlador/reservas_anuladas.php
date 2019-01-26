@@ -78,7 +78,7 @@ function reporte($data){
  
   function obtener_reservas_anuladas($data,$conexion){
     
-        $query = mysqli_query($conexion,"SELECT r.*,(select nombre from cdr_cliente where id_cliente=r.id_cliente) as visitante,(select nombre from cdr_reserva_detalle_estado where id_estado_dettalle_reserva=r.estado2) as motivo,(select sum(monto) from cdr_detalle_reserva where id_reserva=r.id_reserva) as monto,(select nombre_completo from org_usuario where nr=r.nr_usuario) as usuario FROM cdr_reserva as r where (r.estado2=2 or r.estado2=3) and id_centro='".$data['id_centro']."'");
+        $query = mysqli_query($conexion,"SELECT r.*,(select nombre from cdr_cliente where id_cliente=r.id_cliente) as visitante,(select nombre from cdr_reserva_detalle_estado where id_estado_dettalle_reserva=r.estado2) as motivo,(select sum(monto) from cdr_detalle_reserva where id_reserva=r.id_reserva) as monto,(select nombre_completo from org_usuario where nr=r.nr_usuario) as usuario FROM cdr_reserva as r where (r.estado2=2 or r.estado2=3) and r.id_centro='".$data['id_centro']."'");
        
         while( $query_fila=mysqli_fetch_array($query,MYSQLI_ASSOC)){
 	            $centros[] = $query_fila;
