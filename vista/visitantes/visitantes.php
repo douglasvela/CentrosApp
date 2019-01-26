@@ -1,20 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<link href="../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
-	<script src="../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<head> 
 	 <script src="../../assets/plugins/jquery/jquery.min.js"></script> 
-	 <script>
-	  $(document).ready(function(){
-	          $('.date-own').datepicker({
-	            minViewMode: 2,
-	            format: 'yyyy',
-	            autoclose: true,
-	            todayHighlight: true
-	          });
-	      });
-
-	</script>
+	 
 	<script type="text/javascript">
 		function mostrar_ocultar_selects(){
 	     	if(document.getElementById('radio_mensual').checked==true){
@@ -121,7 +109,7 @@
 	                        </div>
 	                        <div class="form-group" id="input_mes">
 	                            <h5>Mes: <span class="text-danger"></span></h5>
-	                            <select id="mes" name="mes" class="select2" onchange="" style="width: 100%" >
+	                            <select id="mes" name="mes" class="select2"  style="width: 100%" >
 	                                <option value="0">[Seleccione]</option>
 	                                <option class="m-l-50" value="1">Enero</option>
 	                                <option class="m-l-50" value="2">Febrero</option>
@@ -139,7 +127,7 @@
 	                        </div>
 	                        <div class="form-group" id="input_trimestre" style="display:none">
 	                            <h5>Trimestre: <span class="text-danger"></span></h5>
-	                            <select id="trimestre" name="trimestre" class="select2" onchange="" style="width: 100%" >
+	                            <select id="trimestre" name="trimestre" class="select2"  style="width: 100%" >
 	                                <option value="0">[Seleccione]</option>
 	                                <option class="m-l-50" value="1">1er Trimestre</option>
 	                                <option class="m-l-50" value="2">2do Trimestre</option>
@@ -149,7 +137,7 @@
 	                        </div>
 	                        <div class="form-group" id="input_semestre" style="display:none">
 	                            <h5>Semestre: <span class="text-danger"></span></h5>
-	                            <select id="semestre" name="semestre" class="select2" onchange="" style="width: 100%" >
+	                            <select id="semestre" name="semestre" class="select2"  style="width: 100%" >
 	                                <option value="0">[Seleccione]</option>
 	                                <option class="m-l-50" value="1">1er Semestre</option>
 	                                <option class="m-l-50" value="2">2do Semestre</option>
