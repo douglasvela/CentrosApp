@@ -72,7 +72,7 @@
 	    </div>
 </body>
  <script> jQuery(document).ready(function() { 
-        $(".container-fluid").css("padding",'13');
-        $(".page-titles").css("margin",'0');
+        $(".container-fluid").css("padding",'14');
+        $(".row.page-titles").css("margin",'0');
      }); </script>
 </html>
