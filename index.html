@@ -188,6 +188,25 @@
             $(".select2").select2();
           });
       }
+      function mostrarreservasanuladas(){
+        var formData = new FormData();    
+        $.ajax({
+              //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
+              url: "http://centros.proyectotesisuesfmp.com/vista/reservas_anuladas/reservas_anuladas.php",
+              type: "post",
+              dataType: "html",
+              data: formData,
+              crossDomain: true,
+              cache: false,
+              contentType: false,
+              processData: false
+          })
+          .done(function(res1){
+            $("#ind_inicio").html(res1);
+            $(".select2").select2();
+            $("#div_selec_centros").hide();
+          });
+      }
       function CerrarSession(){
         localStorage.setItem("usuario", '');
         localStorage.setItem("nr", '');
@@ -234,10 +253,11 @@
                 <nav class="sidebar-nav" >
                     <ul>
                         <li class="nav-small-cap">CentrosApp - <span id="nombre"></span></li>
-                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarvisitantes()"><i  class="ti-check-box"></i><span  class="hide-menu">Estadística de Visitas</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarvisitantes()"><i  class="ti-pencil-alt"></i><span  class="hide-menu">Estadística de Visitas</span></div></a></li>
                          <li><a href="#" class="nav-toggler"  ><div onclick="mostrarformingresosxespacios()"><i  class="ti-stats-up"></i><span  class="hide-menu">Ingresos por Esp. Fisicos</span></div></a></li>
                          <li><a href="#" class="nav-toggler"  ><div onclick="mostraringresoscentros()"><i  class="ti-clipboard"></i><span  class="hide-menu">Ingresos por Centro</span></div></a></li>
                          <li><a href="#" class="nav-toggler"  ><div onclick="mostraringresosdiarios()"><i  class="ti-bar-chart"></i><span  class="hide-menu">Ingresos diarios</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarreservasanuladas()"><i  class="ti-new-window"></i><span  class="hide-menu">Reservas Anuladas</span></div></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

@@ -19,7 +19,7 @@ function reporte($data){
 				<td align="center" style="font-size: 15px; font-weight: bold; vertical-align: center; line-height: 1.5;">
 					MINISTERIO DE TRABAJO Y PREVISION SOCIAL <br>
 					OFICINA DE ESTADÍSTICA E INFORMÁTICA <br>
-					<span style="font-size: 12px; text-decoration: underline;">INFORME DE INGRESO CONSOLIDADO POR CENTROS DE RECREACIÓN</span>
+					<span style="font-size: 12px;">INFORME DE INGRESO CONSOLIDADO POR CENTROS DE RECREACIÓN</span>
 				</td>
 				
 		 	</tr>
