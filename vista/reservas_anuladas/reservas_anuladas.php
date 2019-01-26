@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head> 
-	 <script src="../../assets/plugins/jquery/jquery.min.js"></script> 
-	 
+<head>  
 	<script type="text/javascript">
 		
 		function mostrarReporte(){
-	       	var id_centro = $("#id_centro").val();
-		     
 	        	var formData = new FormData();
-		       formData.append("id_centro", id_centro);
+		       formData.append("id_centro", $("#id_centro").val());
 
 		        $.ajax({
 		              //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
@@ -45,7 +41,7 @@
 	                    <div class="card-body b-t">
 	                    	<div class="form-group">
 	                            <h5>Centro de Recreación: <span class="text-danger">*</span></h5> 
-	                            <select name="id_centro" id="id_centro" class="select2" style="width: 100%">
+	                            <select id="id_centro" class="select2" style="width: 100%">
 	                            	<?php 
 	                            	$conexion = mysqli_connect("162.241.252.245","proyedk4_WPZF0","MAYO_nesa94","proyedk4_WPZF0"); 
                                     $query_consulta_centros=mysqli_query($conexion,"select * from cdr_centro"); 
