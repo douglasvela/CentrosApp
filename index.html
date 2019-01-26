@@ -38,13 +38,11 @@
             $("#ind_inicio").html(res1);
           }); 
       } 
-      function mostrarforminfor() { 
+      function mostraringresoscentros() { 
         var formData = new FormData();
-        var nr = localStorage.getItem('nr');
-        formData.append("nr", nr);
         $.ajax({
               //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
-              url: "http://centros.proyectotesisuesfmp.com/vista/info_personal/info_personal.php",
+              url: "http://centros.proyectotesisuesfmp.com/vista/ingresos_centros/ingresos_centros.php",
               type: "post",
               dataType: "html",
               data: formData,
@@ -217,9 +215,9 @@
                 <nav class="sidebar-nav" >
                     <ul>
                         <li class="nav-small-cap">CentrosApp - <span id="nombre"></span></li>
-                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarvisitantes()"><i  class="ti-check-box"></i><span  class="hide-menu">Visitantes por periodo</span></div></a></li>
-                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarformingresosxespacios()"><i  class="ti-plus"></i><span  class="hide-menu">Ingresos por Espacios Fisicos</span></div></a></li>
-                         <li><a href="#" class="nav-toggler"  ><div onclick=""><i  class="ti-plus"></i><span  class="hide-menu">Ingresos por Centro</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarvisitantes()"><i  class="ti-check-box"></i><span  class="hide-menu">Estadística de Visitas</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarformingresosxespacios()"><i  class="ti-plus"></i><span  class="hide-menu">Ingresos por Esp. Fisicos</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick="mostraringresoscentros()"><i  class="ti-plus"></i><span  class="hide-menu">Ingresos por Centro</span></div></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
