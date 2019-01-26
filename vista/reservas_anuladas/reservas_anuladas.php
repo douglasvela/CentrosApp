@@ -73,7 +73,7 @@
 </body>
  <script> jQuery(document).ready(function() { 
         $(".container-fluid").css("padding",'14');
-        $(".row.page-titles").css("margin",'14');
-        $(".row.page-titles").css("margin-bottom",'30');
+        $(".page-titles").css("margin",'0 -14 10');
+        $(".page-titles").css("padding",'15');
      }); </script>
 </html>
