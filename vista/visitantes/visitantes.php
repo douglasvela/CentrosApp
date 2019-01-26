@@ -35,7 +35,7 @@
 	     		document.getElementById("input_trimestre").style.display="none";
 	     	}
 	    }
-		function mostrarReporte(funcion){
+		function mostrarReporte(){
 			var type = "anual";
 			var value = "";
 	       	$anio = $("#anio_actual").val();
@@ -58,13 +58,12 @@
 	        	|| document.getElementById('radio_anual').checked==true
 	        )){
 	        	var formData = new FormData();
-		       formData.append("funcion", funcion);
-		       formData.append("id_empleado", $("#id_empleado").val());
-		       formData.append("fecha_min", $("#fecha_min").val());
-		       formData.append("fecha_max", $("#fecha_max").val());
+		       formData.append("anio", $anio);
+		       formData.append("type", type);
+		       formData.append("value",value);
 		        $.ajax({
 		              //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
-		              url: "http://centros.proyectotesisuesfmp.com/controlador/viaticopagado.php",
+		              url: "http://centros.proyectotesisuesfmp.com/controlador/visitantes.php",
 		              type: "post",
 		              dataType: "html",
 		              data: formData,
@@ -77,21 +76,11 @@
 		            $("#informe_vista").html(res1);
 		          }); 
 	        }else{
-	        	//swal({ title: "¡Ups! Error", text: "Completa los campos.", type: "error", showConfirmButton: true });
+	        	swal({ title: "¡Ups! Error", text: "Completa los campos.", type: "error", showConfirmButton: true });
 	        }
 
 	     }
-	    
-	     function calendar(){ 
- 			var options = {
-			  date: new Date(),
-			  mode: 'date'
-			};
-
-			datePicker.show(options, function(date){
-			  alert("date result " + date);  
-			});
-		} 
+	     
 	</script>
 </head>
 <body>
@@ -109,8 +98,15 @@
 	                    </div>
 	                    <div class="card-body b-t">
 	                    	<div class="form-group">
-	                            <h5>Año: <span class="text-danger">*</span></h5>
-	                            <input type="text" value="<?php echo date('Y'); ?>" class="form-control" id="anio_actual" name="anio_actual" placeholder="yyyy" onclick="calendar()">
+	                            <h5>Año: <span class="text-danger">*</span></h5> 
+	                            <select name="anio_actual" id="anio_actual" class="select2" style="width: 100%">
+	                            	<?php 
+	                            	$actual = date('Y');
+										for($i=$actual; $i>=2016;$i--){
+	                            	?>
+	                            		<option value="<?php echo $i;?>"><?php echo $i;?></option>
+	                            	<?php }?>
+	                            </select>
 	                        </div>
 	                        <div class="demo-radio-button">
 	                        	<h5>Periodo: <span class="text-danger"></span></h5>
