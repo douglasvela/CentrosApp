@@ -56,7 +56,7 @@ function reporte_viatico_pagado_empleado($data){
          }
 		
 	 	$cuerpo .= ' <div class="table-responsive">
-			<table style="font-size:12;" class="table table-stripeds">
+			<table style="font-size:12;" class="table table-striped">
 				<thead>
 					<tr>
 						<th align="center"></th>';		
