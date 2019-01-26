@@ -27,11 +27,11 @@
 </head>
 <body>
 	    <div class="container-fluid">
-	        <div class="row page-titles">
+	       <!-- <div class="row page-titles" >
 	            <div class="align-self-center" align="center">
 	                <h3 class="text-themecolor m-b-0 m-t-0">Reservas Anuladas</h3>
 	            </div>
-	        </div>
+	        </div> -->
 	         <div class="row " id="cnt_form">
 	            <div class="col-lg-4"  style="display: block;">
 	                <div class="card">
