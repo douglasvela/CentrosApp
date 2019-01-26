@@ -23,7 +23,8 @@ function reporte($data){
 				</td>
 				
 		 	</tr>
-	 	</table><br>';
+	 	</table><br>
+	 	';
 	 	$cuerpo = "";
 		$sufijo = "";
 	 	if($data["tipo"] == "mensual"){
@@ -49,7 +50,17 @@ function reporte($data){
 	 $sumas = array();
 	 $categoria_visita = obtener_categoria_espacios('espacios_fisicos',$conexion);
 
-	 $cuerpo .= ' <div class="table-responsive">
+	 $cuerpo .= ' 
+		<table  class="table">
+		 	<tr style="font-size: 20px; vertical-align: center; font-family: "Poppins", sans-serif;">
+		 		
+				<td align="center" style="font-size: 15px; font-weight: bold; vertical-align: center; line-height: 1.5;">
+				 USO DE INSTALACIONES
+				</td>
+				
+		 	</tr>
+	 	</table>
+	 <div class="table-responsive">
 			<table style="font-size: 12;" class="table table-striped">
 				<thead>
 					<tr>
@@ -143,7 +154,17 @@ function reporte($data){
 
 				$cuerpo .= '	
 				</tbody>
-			</table></div><br>';
+			</table></div></div><br>
+		<table  class="table">
+		 	<tr style="font-size: 20px; vertical-align: center; font-family: "Poppins", sans-serif;">
+		 		
+				<td align="center" style="font-size: 15px; font-weight: bold; vertical-align: center; line-height: 1.5;">
+				 USO DE ESTACIONAMIENTO
+				</td>
+				
+		 	</tr>
+	 	</table>
+			';
 
 
 		$ids_categorias = array();
@@ -255,7 +276,17 @@ function reporte($data){
 	 	$sumas = array();
 	 	$categoria_visita = obtener_categoria_espacios('cafeterias',$conexion);
 
-	 	$cuerpo .= ' <div class="table-responsive">
+	 	$cuerpo .= ' 
+		<table  class="table">
+		 	<tr style="font-size: 20px; vertical-align: center; font-family: "Poppins", sans-serif;">
+		 		
+				<td align="center" style="font-size: 15px; font-weight: bold; vertical-align: center; line-height: 1.5;">
+				 USO DE CAFETERIAS, ESPACIOS PUBLICITARIOS Y ACTOS CULTURALES
+				</td>
+				
+		 	</tr>
+	 	</table>
+	 	<div class="table-responsive">
 			<table style="font-size: 12;" class="table table-striped">
 				<thead>
 					<tr>
