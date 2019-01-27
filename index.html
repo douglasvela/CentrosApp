@@ -142,6 +142,7 @@
               $("#div_selec_centros").show();
               cargar_indicadores('1');cargar_centros();
             }else{
+              swal({ title: "¡Ups!", text: "Nombre de Usuario o Contraseña incorrecta.", type: "error", showConfirmButton: true });
               $("#form_menu").hide();
               $("#form_inicio_sesion").show();
               $("#div_selec_centros").hide();
@@ -331,7 +332,7 @@
                <div class="col-lg-4"  style="display: block;">
                     <div class="card">
                         <div class="card-body b-t">
-                        <center><h4 class="card-title m-b-0">Inicio de Sesión</h4></center><br>
+                        <center><h4 class="card-title m-b-0">CentrosApp<br><br>Inicio de Sesión</h4></center><br>
                           <div class="form-group">
                             
                             <input type="text" id="usuario" class="form-control " placeholder="Nombre de usuario">
