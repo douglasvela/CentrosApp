@@ -217,6 +217,25 @@
         $("#ind_inicio").html("");
         $("#div_selec_centros").hide();
       } 
+      function mostrarformespaciosfisicos() { 
+        var formData = new FormData();
+        $.ajax({
+              //url: "http://192.168.0.16/viaticoapp/indicadores_inicio.php",
+              url: "http://centros.proyectotesisuesfmp.com/vista/espacios_fisicos/espacios_fisicos.php",
+              type: "post",
+              dataType: "html",
+              data: formData,
+              crossDomain: true,
+              cache: false,
+              contentType: false,
+              processData: false
+          })
+          .done(function(res1){
+            $("#ind_inicio").html(res1);
+            $(".select2").select2();
+            $("#div_selec_centros").hide();
+          }); 
+      } 
     </script>
 </head>
 
@@ -258,6 +277,7 @@
                          <li><a href="#" class="nav-toggler"  ><div onclick="mostraringresoscentros()"><i  class="ti-clipboard"></i><span  class="hide-menu">Ingresos por Centro</span></div></a></li>
                          <li><a href="#" class="nav-toggler"  ><div onclick="mostraringresosdiarios()"><i  class="ti-bar-chart"></i><span  class="hide-menu">Ingresos diarios</span></div></a></li>
                          <li><a href="#" class="nav-toggler"  ><div onclick="mostrarreservasanuladas()"><i  class="ti-new-window"></i><span  class="hide-menu">Reservas Anuladas</span></div></a></li>
+                         <li><a href="#" class="nav-toggler"  ><div onclick="mostrarformespaciosfisicos()"><i  class="ti-new-window"></i><span  class="hide-menu">Espacios Fisicos por Centro</span></div></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
