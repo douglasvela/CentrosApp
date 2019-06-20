@@ -13,7 +13,7 @@ $query_consulta=mysqli_query($conexion,"SELECT * FROM org_usuario WHERE usuario 
 
 
       	 if($row_cnt>0){
-      	 	echo "correcto,".$fila_session_usuario[2].','.$fila_session_usuario[1];
+      	 	echo "correcto,".$fila_session_usuario[3].','.$fila_session_usuario[2];
       	 }else{
       	 	echo "incorrecto";
       	 }
